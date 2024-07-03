@@ -83,7 +83,6 @@ const CommonButton = styled.button<CommonButtonType>`
       `;
     }
   }}
-
   font-size: ${(props) => props.fontSize || "1rem"};
   width: ${(props) => props.width || "312px"};
   height: ${(props) => props.height || "56px"};
