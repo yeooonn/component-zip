@@ -3,6 +3,7 @@ import "../styles/global.css";
 import { useState } from "react";
 import styled from "styled-components";
 import Modal from "../components/Modal";
+import CommonButton from "../components/CommonButton";
 
 const Title = styled.h1`
   font-size: 1.5rem;
@@ -41,6 +42,22 @@ export default function page() {
           1. Modal component
           <P>
             <Button onClick={handleOpenModal}>open modal</Button>
+          </P>
+        </Li>
+        <Li>
+          2. Button component
+          <P>
+            <CommonButton variant="active" width="10%" height="40px">
+              active button
+            </CommonButton>
+            <CommonButton
+              variant="inActive"
+              width="10%"
+              height="40px"
+              $marginLeft="1%"
+            >
+              inActive button
+            </CommonButton>
           </P>
         </Li>
       </Ul>
