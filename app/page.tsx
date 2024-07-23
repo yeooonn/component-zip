@@ -4,6 +4,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import Modal from "../components/Modal";
 import CommonButton from "../components/CommonButton";
+import Radio_btn from "../components/Radio_btn";
+import CheckBox from "../components/CheckBox";
 
 const Title = styled.h1`
   font-size: 1.5rem;
@@ -47,17 +49,49 @@ export default function page() {
         <Li>
           2. Button component
           <P>
-            <CommonButton variant="active" width="10%" height="40px">
-              active button
+            <CommonButton variant="solid_btn" width="15%" height="40px">
+              solid_btn button
             </CommonButton>
             <CommonButton
-              variant="inActive"
-              width="10%"
+              variant="ghost_btn"
+              width="15%"
               height="40px"
               $marginLeft="1%"
             >
-              inActive button
+              ghost_btn button
             </CommonButton>
+            <CommonButton
+              variant="disabled_btn"
+              width="15%"
+              height="40px"
+              $marginLeft="1%"
+            >
+              disabled_btn button
+            </CommonButton>
+          </P>
+        </Li>
+        <Li>
+          3. Custom Radio button
+          <P>
+            <Radio_btn
+              width="30px"
+              height="30px"
+              borderColor="#008868"
+              bgColor="#008868"
+              label="Radio"
+            />
+          </P>
+        </Li>
+        <Li>
+          4. Custom CheckBox
+          <P>
+            <CheckBox
+              width="30px"
+              height="30px"
+              borderColor="#008868"
+              bgColor="#008868"
+              label="Checkbox"
+            />
           </P>
         </Li>
       </Ul>
