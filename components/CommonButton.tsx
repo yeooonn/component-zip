@@ -1,16 +1,16 @@
 import styled, { css } from "styled-components";
 
-export type ButtonVariant = "active" | "inActive";
+export type ButtonVariant = "solid_btn" | "ghost_btn" | "disabled_btn";
 
 const variants = {
-  active: {
+  solid_btn: {
     color: "#fff",
-    backgroundColor: "#446FF6",
+    backgroundColor: "#008868",
     cursor: "pointer",
     pseudoClass: {
       hover: {
         color: "#fff",
-        backgroundColor: "#285CFF",
+        backgroundColor: "#017c5f",
       },
       disabled: {
         color: "#8E8E93",
@@ -18,18 +18,35 @@ const variants = {
       },
     },
   },
-  inActive: {
-    color: "#8E8E93",
-    backgroundColor: "#636366",
-    cursor: "default",
+  ghost_btn: {
+    color: "#008868",
+    backgroundColor: "#fff",
+    borderColor: "#008868",
+    cursor: "pointer",
     pseudoClass: {
       hover: {
-        color: "#8E8E93",
-        backgroundColor: "#636366",
+        color: "#01654e",
+        backgroundColor: "#fff",
+        borderColor: "#008868",
       },
       disabled: {
         color: "#8E8E93",
         backgroundColor: "#636366",
+      },
+    },
+  },
+  disabled_btn: {
+    color: "#fff",
+    backgroundColor: "#D4D4D4",
+    cursor: "default",
+    pseudoClass: {
+      hover: {
+        color: "#fff",
+        backgroundColor: "#D4D4D4",
+      },
+      disabled: {
+        color: "#fff",
+        backgroundColor: "#D4D4D4",
       },
     },
   },
@@ -51,6 +68,7 @@ interface CommonButtonType {
     hover?: {
       color?: string;
       backgroundColor?: string;
+      borderColor?: string;
     };
     disabled?: {
       color?: string;
@@ -67,14 +85,18 @@ const CommonButton = styled.button<CommonButtonType>`
       return css`
         color: ${variants[variant].color};
         background-color: ${variants[variant].backgroundColor};
+        border: ${variant === "ghost_btn"
+          ? `1px solid ${variants[variant].pseudoClass.hover.borderColor}`
+          : "none"};
         cursor: ${variants[variant].cursor};
         &:hover {
           color: ${variants[variant].pseudoClass.hover.color};
           background-color: ${variants[variant].pseudoClass.hover
             .backgroundColor};
+          border-color: ${variant === "ghost_btn" &&
+          variants[variant].pseudoClass.hover.borderColor};
           transition: all 0.3s;
         }
-
         &:disabled {
           color: ${variants[variant].pseudoClass.disabled.color};
           background-color: ${variants[variant].pseudoClass.disabled
@@ -91,18 +113,18 @@ const CommonButton = styled.button<CommonButtonType>`
   margin-left: ${(props) => props.$marginLeft};
   margin-top: ${(props) => props.$marginTop};
   box-sizing: border-box;
-  border: none;
   border-radius: 8px;
   outline: 0;
   margin-bottom: ${(props) => props.$marginBottom || "16px"};
   background-color: ${(props) => props.backgroundColor};
   &:hover {
     background-color: ${(props) => props.$hoverColor};
+    transition: all 0.3s;
   }
 `;
 
 CommonButton.defaultProps = {
-  variant: "active",
+  variant: "solid_btn",
 };
 
 export default CommonButton;
